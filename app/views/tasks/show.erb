@@ -1,0 +1,37 @@
+<h1>Hello, <%= current_user.username %><br><br></h1>
+
+
+<% if @page.to_i >= PER_PAGE %>
+  <a type="button" class="btn btn-primary" href='/tasks?page=<%= @page.to_i - PER_PAGE%>'>Previous Page</a>
+<% end %>
+
+<% if @page.to_i + PER_PAGE < @list_count  %>
+  <a type="button" class="btn btn-primary"href='/tasks?page=<%= @page.to_i + PER_PAGE%>'>Next Page</a>
+<% end %>
+
+
+
+<h1>ToDo Page <%= @page.to_i%></h1>
+  <a href="/lists/new"><button type="button" class="btn btn-danger" style="float:left;">Add List</button></a>
+
+
+<div class="col-6">
+<% @lists.each do |list|%>
+  <% if list.user_id == @user.id %>
+    <a type="button" class="btn btn-danger" href="/lists/<%=list.id%>/edit" style="float:left; position:relative; left:6px;">Change List Name</a>
+    <form method="post" action="/lists/<%=list.id%>">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input class="btn btn-danger" type="submit" value="Delete List" style="position:relative; left:12px;">
+    </form>
+    <h2 ><%= list.name %></h2>
+        <h4 ><a type = "button" class = "btn btn-primary"href="tasks/new/<%=list.id%>" >Add Task</a></h4>
+  
+
+    <div>
+      <% list.tasks.each do |task| %>
+          <input type="checkbox" id="gigacheck">
+          <%= task.name %><br>
+      <% end %>
+      </div>
+  <% end %>
+<% end %>

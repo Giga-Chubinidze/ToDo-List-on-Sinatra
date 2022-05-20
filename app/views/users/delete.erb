@@ -1,0 +1,6 @@
+<h1>Delete your account</h1>
+
+<form action="/users/<%= @user.id %> /deletion" method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <input type="submit" value="delete ">
+</form>

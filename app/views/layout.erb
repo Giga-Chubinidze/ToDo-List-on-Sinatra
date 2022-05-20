@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <title>ToDo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  </head>
+<body>
+
+
+<nav class="navbar navbar-light" style="background-color: aquamarine;">
+  <div class="container-fluid">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="/tasks">Home</a>
+  <ul class="nav navbar-nav">
+
+  <% if logged_in? %>
+    <li><a href ="/users/:id/edit">Edit Profile</a></li>
+    <li><a href="/logout">Log Out</a></li>
+    <li><a href="/users/:id/delete">Delete Acc</a></li>
+  <% else %>
+    <li><a href="/signup">Sign Up</a></li>
+  <% end %>
+  </ul>
+</div>
+</div>
+</nav>
+<div class="col-md-6 col-xs-offset-2">
+
+<%= yield %> 
+
+</div>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</body>
+</html>
